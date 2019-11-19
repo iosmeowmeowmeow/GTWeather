@@ -13,7 +13,11 @@
 		B1CF43E92383E00900CFB940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CF43E72383E00900CFB940 /* Main.storyboard */; };
 		B1CF43EB2383E00A00CFB940 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CF43EA2383E00A00CFB940 /* Assets.xcassets */; };
 		B1CF43EE2383E00A00CFB940 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CF43EC2383E00A00CFB940 /* LaunchScreen.storyboard */; };
-		B1CF43F92383E00A00CFB940 /* GTWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF43F82383E00A00CFB940 /* GTWeatherTests.swift */; };
+		B1CF44042383E03100CFB940 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B1CF44032383E03100CFB940 /* data.json */; };
+		B1CF44072383E05A00CFB940 /* MockDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF44062383E05A00CFB940 /* MockDecodable.swift */; };
+		B1CF44092383E07A00CFB940 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF44082383E07A00CFB940 /* WeatherTests.swift */; };
+		B1CF440C2383E0A100CFB940 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF440B2383E0A100CFB940 /* Weather.swift */; };
+		B1CF440F2383E0D000CFB940 /* WeatherDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF440E2383E0D000CFB940 /* WeatherDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +40,12 @@
 		B1CF43ED2383E00A00CFB940 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1CF43EF2383E00A00CFB940 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1CF43F42383E00A00CFB940 /* GTWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1CF43F82383E00A00CFB940 /* GTWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTWeatherTests.swift; sourceTree = "<group>"; };
 		B1CF43FA2383E00A00CFB940 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1CF44032383E03100CFB940 /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		B1CF44062383E05A00CFB940 /* MockDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDecodable.swift; sourceTree = "<group>"; };
+		B1CF44082383E07A00CFB940 /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
+		B1CF440B2383E0A100CFB940 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		B1CF440E2383E0D000CFB940 /* WeatherDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +89,12 @@
 			children = (
 				B1CF43E12383E00900CFB940 /* AppDelegate.swift */,
 				B1CF43E32383E00900CFB940 /* SceneDelegate.swift */,
-				B1CF43E52383E00900CFB940 /* ViewController.swift */,
 				B1CF43E72383E00900CFB940 /* Main.storyboard */,
 				B1CF43EA2383E00A00CFB940 /* Assets.xcassets */,
 				B1CF43EC2383E00A00CFB940 /* LaunchScreen.storyboard */,
 				B1CF43EF2383E00A00CFB940 /* Info.plist */,
+				B1CF440D2383E0AC00CFB940 /* Model */,
+				B1CF44102383E0EF00CFB940 /* Controller */,
 			);
 			path = GTWeather;
 			sourceTree = "<group>";
@@ -93,10 +102,45 @@
 		B1CF43F72383E00A00CFB940 /* GTWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				B1CF43F82383E00A00CFB940 /* GTWeatherTests.swift */,
 				B1CF43FA2383E00A00CFB940 /* Info.plist */,
+				B1CF44062383E05A00CFB940 /* MockDecodable.swift */,
+				B1CF440A2383E07F00CFB940 /* Model */,
+				B1CF44052383E03700CFB940 /* Data */,
 			);
 			path = GTWeatherTests;
+			sourceTree = "<group>";
+		};
+		B1CF44052383E03700CFB940 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B1CF44032383E03100CFB940 /* data.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B1CF440A2383E07F00CFB940 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B1CF44082383E07A00CFB940 /* WeatherTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B1CF440D2383E0AC00CFB940 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B1CF440B2383E0A100CFB940 /* Weather.swift */,
+				B1CF440E2383E0D000CFB940 /* WeatherDetails.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B1CF44102383E0EF00CFB940 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B1CF43E52383E00900CFB940 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +196,7 @@
 					};
 					B1CF43F32383E00A00CFB940 = {
 						CreatedOnToolsVersion = 11.2;
+						LastSwiftMigration = 1120;
 						TestTargetID = B1CF43DD2383E00900CFB940;
 					};
 				};
@@ -190,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CF44042383E03100CFB940 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,8 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CF440C2383E0A100CFB940 /* Weather.swift in Sources */,
 				B1CF43E62383E00900CFB940 /* ViewController.swift in Sources */,
 				B1CF43E22383E00900CFB940 /* AppDelegate.swift in Sources */,
+				B1CF440F2383E0D000CFB940 /* WeatherDetails.swift in Sources */,
 				B1CF43E42383E00900CFB940 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,7 +258,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1CF43F92383E00A00CFB940 /* GTWeatherTests.swift in Sources */,
+				B1CF44092383E07A00CFB940 /* WeatherTests.swift in Sources */,
+				B1CF44072383E05A00CFB940 /* MockDecodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +448,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T22N4PJ564;
 				INFOPLIST_FILE = GTWeatherTests/Info.plist;
@@ -410,6 +460,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.emmanueltugado.GTWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTWeather.app/GTWeather";
@@ -421,6 +472,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T22N4PJ564;
 				INFOPLIST_FILE = GTWeatherTests/Info.plist;
