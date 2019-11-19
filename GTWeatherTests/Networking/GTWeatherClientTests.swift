@@ -12,17 +12,31 @@ import XCTest
 class GTWeatherClientTests: XCTestCase {
     var sut: GTWeatherClient!
     var baseURL: URL!
-    var session: MockURLSession!
+    var mockSession: MockURLSession!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+
+        baseURL = URL(string: "http://openweathermap.fake.org/api")!
+        mockSession = MockURLSession()
+        sut = GTWeatherClient(baseURL: baseURL, session: mockSession)
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        baseURL = nil
+        mockSession = nil
+        sut = nil
+
+        super.tearDown()
     }
 
+    func test_init_sets_baseURL() {
+      XCTAssertEqual(sut.baseURL, baseURL)
+    }
 
+    func test_init_sets_session() {
+      XCTAssertEqual(sut.session, mockSession)
+    }
 }
 
 typealias NetworkResponse = (Data?, URLResponse?, Error?) -> Void

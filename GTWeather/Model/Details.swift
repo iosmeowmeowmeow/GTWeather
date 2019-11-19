@@ -1,5 +1,5 @@
 //
-//  WeatherDetails.swift
+//  Details.swift
 //  GumWeather
 //
 //  Created by Emmanuel Tugado on 19/11/19.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct WeatherDetails: Decodable {
-    var description: String
+struct Details: Decodable {
+    let description: String
 }

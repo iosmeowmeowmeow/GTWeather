@@ -18,7 +18,7 @@ protocol MockDecodable: class {
 }
 
 extension MockDecodable {
-    func createSUTFromJSONWith(
+    func createSUTAndDictionaryFromJSONWith(
         fileName: String = "\(T.self)",
         file: StaticString = #file,
         line: UInt = #line
