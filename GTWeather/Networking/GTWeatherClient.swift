@@ -19,7 +19,7 @@ class GTWeatherClient {
     let baseURLAddr: String
     let session: URLSession
 
-    init(baseURLAddr: String = "http://api.openweathermap.org/data/2.5/weather", session: URLSession) {
+    init(baseURLAddr: String = "http://api.openweathermap.org/data/2.5/weather", session: URLSession = .shared) {
       self.baseURLAddr = baseURLAddr
       self.session = session
     }
@@ -49,6 +49,8 @@ extension GTWeatherClient {
                 return
             }
             
+            print(data)
+                
             let decoder = JSONDecoder()
             do {
                 let weather = try decoder.decode(Weather.self, from: data)

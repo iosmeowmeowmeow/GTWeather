@@ -13,30 +13,22 @@ class WeatherTests: XCTestCase, MockDecodable {
     var sut: Weather!
     var dictionary: [String: Any]!
 
-    var cityDictionary: [String: Any]!
     var mainDictionary: [String: Any]!
-    var weatherDictionary: [String: Any]!
+    var windDictionary: [String: Any]!
 
     override func setUp() {
         super.setUp()
 
         try! createSUTAndDictionaryFromJSONWith(fileName: "data")
-
-        cityDictionary = dictionary["city"] as? [String: Any] ?? [:]
-
-        mainDictionary = (dictionary["list"] as? [[String: Any]])?[0]["main"] as? [String: Any] ?? [:]
-        let weatherArray = (dictionary["list"] as! [[String: Any]])[0]["weather"] as? [[String: Any]] ?? []
-        weatherDictionary = weatherArray[0]
+        mainDictionary = dictionary["main"] as? [String: Any] ?? [:]
+        windDictionary = dictionary["wind"] as? [String: Any] ?? [:]
     }
 
     override func tearDown() {
         sut = nil
         dictionary = nil
-
-        cityDictionary = nil
-
         mainDictionary = nil
-        weatherDictionary = nil
+        windDictionary = nil
 
         super.tearDown()
     }
@@ -44,35 +36,44 @@ class WeatherTests: XCTestCase, MockDecodable {
     func test_conformsTo_Decodable() {
         XCTAssertTrue((sut as Any) is Decodable)
     }
-    
-    func test_decodable_setsLocationName() {
-        guard let locName = cityDictionary["name"] as? String else { return }
 
-        XCTAssertEqual(sut.locationName, locName)
+    func test_decodable_sets_description() {
+        guard let weather = dictionary["weather"] as? [[String: Any]] else { return }
+        XCTAssertEqual(sut.description, weather[0]["description"] as? String)
     }
-    
+
     func test_decodable_sets_pressure() {
         XCTAssertEqual(sut.pressure, mainDictionary["pressure"] as? Double)
     }
-    
+
     func test_decodable_sets_humidity() {
         XCTAssertEqual(sut.humidity, mainDictionary["humidity"] as? Double)
     }
 
     func test_decodable_sets_temperatureAverage() {
-        XCTAssertEqual(sut.tempAve, mainDictionary["temp"] as? Double)
+        XCTAssertEqual(sut.temperatureAverage, mainDictionary["temp"] as? Double)
     }
 
     func test_decodable_sets_temperatureMin() {
-        XCTAssertEqual(sut.tempMin, mainDictionary["temp_min"] as? Double)
+        XCTAssertEqual(sut.temperatureMin, mainDictionary["temp_min"] as? Double)
     }
-    
+
     func test_decodable_sets_temperatureMax() {
-        XCTAssertEqual(sut.tempMax, mainDictionary["temp_max"] as? Double)
+        XCTAssertEqual(sut.temperatureMax, mainDictionary["temp_max"] as? Double)
     }
-    
-    func test_decodable_sets_description() {
-        XCTAssertEqual(sut.description, weatherDictionary["description"] as? String)
+
+    func test_decodable_sets_windSpeed() {
+        XCTAssertEqual(sut.windSpeed, windDictionary["speed"] as? Double)
+    }
+
+    func test_decodable_sets_windDirection() {
+        XCTAssertEqual(sut.windDirection, windDictionary["deg"] as? Double)
+    }
+
+    func test_decodable_setsLocationName() {
+        guard let locName = dictionary["name"] as? String else { return }
+
+        XCTAssertEqual(sut.locationName, locName)
     }
 }
 

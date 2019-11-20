@@ -48,15 +48,21 @@ class GTWeatherClientTests: XCTestCase {
         let mockTask = sut.weatherForZIPCode("2345") { _, _ in } as! MockURLSessionDataTask
         XCTAssertEqual(mockTask.url["zip"], "2345,au")
     }
-
-    func test_weatherForCity_givenValidJSON_callsCompletionWithWeather() throws {
+    
+    private func generateNetworkResponseWithStatusCode(_ statusCode: Int = 200, dataTask: MockURLSessionDataTask) throws {
+        let data = try Data.json(fileName: "data")
+        
         let response = HTTPURLResponse(
             url: URL(string: baseURLAddr)!,
-            statusCode: 200,
+            statusCode: statusCode,
             httpVersion: nil,
             headerFields: nil
         )
         
+        dataTask.completionHandler(data, response, nil)
+    }
+
+    func test_weatherForCity_givenValidJSON_callsCompletionWithWeather() throws {
         var calledCompletion = false
         var receivedWeather: Weather? = nil
         var receivedError: Error? = nil
@@ -67,8 +73,7 @@ class GTWeatherClientTests: XCTestCase {
             receivedError = error as NSError?
         } as! MockURLSessionDataTask
 
-        let data = try Data.json(fileName: "data")
-        mockTask.completionHandler(data, response, nil)
+        try generateNetworkResponseWithStatusCode(dataTask: mockTask)
         
         let result = (calledCompletion, receivedWeather, receivedError)
 
@@ -78,13 +83,6 @@ class GTWeatherClientTests: XCTestCase {
     }
     
     func test_weatherForZIPCode_givenValidJSON_callsCompletionWithWeather() throws {
-        let response = HTTPURLResponse(
-            url: URL(string: baseURLAddr)!,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil
-        )
-        
         var calledCompletion = false
         var receivedWeather: Weather? = nil
         var receivedError: Error? = nil
@@ -95,8 +93,7 @@ class GTWeatherClientTests: XCTestCase {
             receivedError = error as NSError?
         } as! MockURLSessionDataTask
 
-        let data = try Data.json(fileName: "data")
-        mockTask.completionHandler(data, response, nil)
+        try generateNetworkResponseWithStatusCode(dataTask: mockTask)
         
         let result = (calledCompletion, receivedWeather, receivedError)
 
@@ -106,13 +103,6 @@ class GTWeatherClientTests: XCTestCase {
     }
     
     func test_weatherForCity_givenNon200StatusCode_callsCompletion() throws {
-        let response = HTTPURLResponse(
-            url: URL(string: baseURLAddr)!,
-            statusCode: 500,
-            httpVersion: nil,
-            headerFields: nil
-        )
-        
         var calledCompletion = false
         var receivedWeather: Weather? = nil
         var receivedError: Error? = nil
@@ -123,8 +113,7 @@ class GTWeatherClientTests: XCTestCase {
             receivedError = error as NSError?
         } as! MockURLSessionDataTask
 
-        let data = try Data.json(fileName: "data")
-        mockTask.completionHandler(data, response, nil)
+        try generateNetworkResponseWithStatusCode(500, dataTask: mockTask)
         
         let result = (calledCompletion, receivedWeather, receivedError)
 
@@ -134,13 +123,6 @@ class GTWeatherClientTests: XCTestCase {
     }
     
     func test_weatherForZIPCode_givenNon200StatusCode_callsCompletion() throws {
-        let response = HTTPURLResponse(
-            url: URL(string: baseURLAddr)!,
-            statusCode: 500,
-            httpVersion: nil,
-            headerFields: nil
-        )
-        
         var calledCompletion = false
         var receivedWeather: Weather? = nil
         var receivedError: Error? = nil
@@ -151,8 +133,7 @@ class GTWeatherClientTests: XCTestCase {
             receivedError = error as NSError?
         } as! MockURLSessionDataTask
 
-        let data = try Data.json(fileName: "data")
-        mockTask.completionHandler(data, response, nil)
+        try generateNetworkResponseWithStatusCode(500, dataTask: mockTask)
         
         let result = (calledCompletion, receivedWeather, receivedError)
 

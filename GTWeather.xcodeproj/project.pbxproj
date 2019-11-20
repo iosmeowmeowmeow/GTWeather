@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B1768BF82384E0FC00277A49 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768BF72384E0FC00277A49 /* URL+Extension.swift */; };
+		B1768BFA2385033200277A49 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768BF92385033200277A49 /* SearchViewController.swift */; };
 		B1CF43E22383E00900CFB940 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF43E12383E00900CFB940 /* AppDelegate.swift */; };
 		B1CF43E42383E00900CFB940 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF43E32383E00900CFB940 /* SceneDelegate.swift */; };
 		B1CF43E92383E00900CFB940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CF43E72383E00900CFB940 /* Main.storyboard */; };
@@ -21,9 +22,6 @@
 		B1CF44122383F12700CFB940 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF44112383F12700CFB940 /* WeatherViewController.swift */; };
 		B1CF44142383F19400CFB940 /* GTWeatherClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF44132383F19400CFB940 /* GTWeatherClientTests.swift */; };
 		B1CF44172383F31600CFB940 /* GTWeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF44162383F31600CFB940 /* GTWeatherClient.swift */; };
-		B1F8BF9D238407D00043D57E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F8BF9C238407D00043D57E /* City.swift */; };
-		B1F8BF9F23840EB10043D57E /* MainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F8BF9E23840EB10043D57E /* MainData.swift */; };
-		B1F8BFA32384162C0043D57E /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F8BFA22384162C0043D57E /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		B1768BF72384E0FC00277A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		B1768BF92385033200277A49 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B1CF43DE2383E00900CFB940 /* GTWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CF43E12383E00900CFB940 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1CF43E32383E00900CFB940 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,9 +54,6 @@
 		B1CF44112383F12700CFB940 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		B1CF44132383F19400CFB940 /* GTWeatherClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTWeatherClientTests.swift; sourceTree = "<group>"; };
 		B1CF44162383F31600CFB940 /* GTWeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTWeatherClient.swift; sourceTree = "<group>"; };
-		B1F8BF9C238407D00043D57E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		B1F8BF9E23840EB10043D57E /* MainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainData.swift; sourceTree = "<group>"; };
-		B1F8BFA22384162C0043D57E /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,10 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				B1CF440B2383E0A100CFB940 /* Weather.swift */,
-				B1F8BF9E23840EB10043D57E /* MainData.swift */,
 				B1CF440E2383E0D000CFB940 /* Details.swift */,
-				B1F8BFA22384162C0043D57E /* Forecast.swift */,
-				B1F8BF9C238407D00043D57E /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				B1CF44112383F12700CFB940 /* WeatherViewController.swift */,
+				B1768BF92385033200277A49 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,14 +282,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F8BF9F23840EB10043D57E /* MainData.swift in Sources */,
+				B1768BFA2385033200277A49 /* SearchViewController.swift in Sources */,
 				B1CF44172383F31600CFB940 /* GTWeatherClient.swift in Sources */,
 				B1CF440C2383E0A100CFB940 /* Weather.swift in Sources */,
 				B1CF44122383F12700CFB940 /* WeatherViewController.swift in Sources */,
-				B1F8BFA32384162C0043D57E /* Forecast.swift in Sources */,
 				B1CF43E22383E00900CFB940 /* AppDelegate.swift in Sources */,
 				B1CF440F2383E0D000CFB940 /* Details.swift in Sources */,
-				B1F8BF9D238407D00043D57E /* City.swift in Sources */,
 				B1CF43E42383E00900CFB940 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

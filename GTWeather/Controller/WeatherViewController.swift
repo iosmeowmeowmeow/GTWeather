@@ -10,4 +10,7 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    @IBAction func didTapCloseButton(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 }
