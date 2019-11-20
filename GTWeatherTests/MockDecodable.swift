@@ -25,7 +25,7 @@ extension MockDecodable {
     ) throws {
         let decoder = JSONDecoder()
 
-        let data = try Data.createFromJSON(fileName: fileName, file: file, line: line)
+        let data = try Data.json(fileName: fileName, file: file, line: line)
         dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
 
         sut = try decoder.decode(T.self, from: data)
@@ -33,7 +33,7 @@ extension MockDecodable {
 }
 
 extension Data {
-    public static func createFromJSON(
+    public static func json(
         fileName: String,
         file: StaticString = #file,
         line: UInt = #line

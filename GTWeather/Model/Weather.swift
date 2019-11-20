@@ -8,12 +8,14 @@
 
 import Foundation
 
-struct Weather: Decodable {
+struct Weather: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {
+        case id
         case forecastList = "list"
         case city
     }
 
+    let id: Int
     let forecastList: [Forecast]
     let city: City
 
@@ -46,4 +48,9 @@ struct Weather: Decodable {
     var description: String {
         return details?.description ?? ""
     }
+    
+    static func == (lhs: Weather, rhs: Weather) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
+

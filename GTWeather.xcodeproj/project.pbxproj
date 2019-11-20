@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1768BF82384E0FC00277A49 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768BF72384E0FC00277A49 /* URL+Extension.swift */; };
 		B1CF43E22383E00900CFB940 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF43E12383E00900CFB940 /* AppDelegate.swift */; };
 		B1CF43E42383E00900CFB940 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF43E32383E00900CFB940 /* SceneDelegate.swift */; };
 		B1CF43E92383E00900CFB940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CF43E72383E00900CFB940 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1768BF72384E0FC00277A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		B1CF43DE2383E00900CFB940 /* GTWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CF43E12383E00900CFB940 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1CF43E32383E00900CFB940 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1768BF62384E0DB00277A49 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B1768BF72384E0FC00277A49 /* URL+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		B1CF43D52383E00900CFB940 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 			children = (
 				B1CF43FA2383E00A00CFB940 /* Info.plist */,
 				B1CF44062383E05A00CFB940 /* MockDecodable.swift */,
+				B1768BF62384E0DB00277A49 /* Extension */,
 				B1CF440A2383E07F00CFB940 /* Model */,
 				B1CF44052383E03700CFB940 /* Data */,
 				B1CF44152383F19700CFB940 /* Networking */,
@@ -294,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1CF44142383F19400CFB940 /* GTWeatherClientTests.swift in Sources */,
+				B1768BF82384E0FC00277A49 /* URL+Extension.swift in Sources */,
 				B1CF44092383E07A00CFB940 /* WeatherTests.swift in Sources */,
 				B1CF44072383E05A00CFB940 /* MockDecodable.swift in Sources */,
 			);
