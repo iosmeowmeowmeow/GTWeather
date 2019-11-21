@@ -49,6 +49,13 @@ class GTWeatherClientTests: XCTestCase {
         XCTAssertEqual(mockTask.url["zip"], "2345,au")
     }
     
+    func test_weatherForCoordinates_containsCoordinates() {
+        let mockTask = sut.weatherForCoordinates(latitude: 123.67, longitude: 345.1) { _, _ in } as! MockURLSessionDataTask
+        
+        XCTAssertEqual(mockTask.url["lat"], "123.67")
+        XCTAssertEqual(mockTask.url["lon"], "345.1")
+    }
+    
     private func generateNetworkResponseWithStatusCode(_ statusCode: Int = 200, dataTask: MockURLSessionDataTask) throws {
         let data = try Data.json(fileName: "data")
         
@@ -102,7 +109,27 @@ class GTWeatherClientTests: XCTestCase {
         XCTAssertNil(result.2)
     }
     
-    func test_weatherForCity_givenNon200StatusCode_callsCompletion() throws {
+    func test_weatherForCoordinates_givenValidJSON_callsCompletionWithWeather() throws {
+        var calledCompletion = false
+        var receivedWeather: Weather? = nil
+        var receivedError: Error? = nil
+        
+        let mockTask = sut.weatherForCoordinates(latitude: 123.45, longitude: 99.8) { weather, error in
+            calledCompletion = true
+            receivedWeather = weather
+            receivedError = error as NSError?
+        } as! MockURLSessionDataTask
+
+        try generateNetworkResponseWithStatusCode(dataTask: mockTask)
+        
+        let result = (calledCompletion, receivedWeather, receivedError)
+
+        XCTAssertTrue(result.0)
+        XCTAssertEqual(result.1, receivedWeather)
+        XCTAssertNil(result.2)
+    }
+    
+    func test_weatherForCity_givenNon500StatusCode_callsCompletion() throws {
         var calledCompletion = false
         var receivedWeather: Weather? = nil
         var receivedError: Error? = nil
@@ -122,12 +149,32 @@ class GTWeatherClientTests: XCTestCase {
         XCTAssertNil(result.2)
     }
     
-    func test_weatherForZIPCode_givenNon200StatusCode_callsCompletion() throws {
+    func test_weatherForZIPCode_givenNon500StatusCode_callsCompletion() throws {
         var calledCompletion = false
         var receivedWeather: Weather? = nil
         var receivedError: Error? = nil
         
         let mockTask = sut.weatherForZIPCode("2345") { weather, error in
+            calledCompletion = true
+            receivedWeather = weather
+            receivedError = error as NSError?
+        } as! MockURLSessionDataTask
+
+        try generateNetworkResponseWithStatusCode(500, dataTask: mockTask)
+        
+        let result = (calledCompletion, receivedWeather, receivedError)
+
+        XCTAssertTrue(result.0)
+        XCTAssertNil(result.1)
+        XCTAssertNil(result.2)
+    }
+    
+    func test_weatherForCoordinates_givenNon500StatusCode_callsCompletion() throws {
+        var calledCompletion = false
+        var receivedWeather: Weather? = nil
+        var receivedError: Error? = nil
+        
+        let mockTask = sut.weatherForCoordinates(latitude: 123.45, longitude: 99.8) { weather, error in
             calledCompletion = true
             receivedWeather = weather
             receivedError = error as NSError?

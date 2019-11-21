@@ -11,8 +11,9 @@ import Foundation
 typealias WeatherResponse = (Weather?, Error?) -> ()
 
 protocol WeatherClient {
-    func weatherForCity(_ city: String, completion: @escaping WeatherResponse) -> URLSessionDataTask
-    func weatherForZIPCode(_ code: String, country: String, completion: @escaping WeatherResponse) -> URLSessionDataTask
+    func weatherForCity(_ city: String, completion: @escaping WeatherResponse) -> URLSessionDataTask?
+    func weatherForZIPCode(_ code: String, country: String, completion: @escaping WeatherResponse) -> URLSessionDataTask?
+    func weatherForCoordinates(latitude: Double, longitude: Double, completion: @escaping WeatherResponse) -> URLSessionDataTask?
 }
 
 class GTWeatherClient {
@@ -25,7 +26,7 @@ class GTWeatherClient {
     }
 }
 
-extension GTWeatherClient {
+extension GTWeatherClient: WeatherClient {
     func weatherForCity(_ city: String, completion: @escaping WeatherResponse) -> URLSessionDataTask? {
         guard let url = requestURLWithParams(["q": city]) else { return nil }
         
@@ -34,6 +35,12 @@ extension GTWeatherClient {
     
     func weatherForZIPCode(_ code: String, country: String = "au", completion: @escaping WeatherResponse) -> URLSessionDataTask? {
         guard let url = requestURLWithParams(["zip": "\(code),\(country)"]) else { return nil }
+        
+        return startDataTaskForURL(url, completion: completion)
+    }
+    
+    func weatherForCoordinates(latitude: Double, longitude: Double, completion: @escaping WeatherResponse) -> URLSessionDataTask? {
+        guard let url = requestURLWithParams(["lat": "\(latitude)", "lon": "\(longitude)"]) else { return nil }
         
         return startDataTaskForURL(url, completion: completion)
     }
