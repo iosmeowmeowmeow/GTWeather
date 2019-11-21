@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B16F1F6823861D5100C823D6 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F1F6723861D5100C823D6 /* DetailViewModel.swift */; };
 		B16F1F6B23863B2A00C823D6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F1F6A23863B2A00C823D6 /* LocationService.swift */; };
+		B16F1F712387471D00C823D6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F1F702387471D00C823D6 /* Store.swift */; };
+		B16F1F7323874AA500C823D6 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F1F7223874AA500C823D6 /* StoreTests.swift */; };
 		B1768BF82384E0FC00277A49 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768BF72384E0FC00277A49 /* URL+Extension.swift */; };
 		B1768BFA2385033200277A49 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768BF92385033200277A49 /* SearchViewController.swift */; };
 		B1768C292385F17600277A49 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768C282385F17600277A49 /* DetailTableViewCell.swift */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		B16F1F6723861D5100C823D6 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B16F1F6A23863B2A00C823D6 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		B16F1F702387471D00C823D6 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		B16F1F7223874AA500C823D6 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		B1768BF72384E0FC00277A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		B1768BF92385033200277A49 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B1768C282385F17600277A49 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,6 +100,22 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		B16F1F6C238746E100C823D6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				B16F1F7223874AA500C823D6 /* StoreTests.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		B16F1F6F2387470C00C823D6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				B16F1F702387471D00C823D6 /* Store.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		B1768BF62384E0DB00277A49 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +159,7 @@
 				B1CF43EA2383E00A00CFB940 /* Assets.xcassets */,
 				B1CF43EC2383E00A00CFB940 /* LaunchScreen.storyboard */,
 				B1CF43EF2383E00A00CFB940 /* Info.plist */,
+				B16F1F6F2387470C00C823D6 /* Persistence */,
 				B16F1F6923863B1700C823D6 /* Service */,
 				B16F1F6623861BC000C823D6 /* ViewModel */,
 				B1768C272385F15200277A49 /* View */,
@@ -154,6 +175,7 @@
 			children = (
 				B1CF43FA2383E00A00CFB940 /* Info.plist */,
 				B1CF44062383E05A00CFB940 /* MockDecodable.swift */,
+				B16F1F6C238746E100C823D6 /* Persistence */,
 				B1768BF62384E0DB00277A49 /* Extension */,
 				B1CF440A2383E07F00CFB940 /* Model */,
 				B1CF44052383E03700CFB940 /* Data */,
@@ -321,6 +343,7 @@
 				B1768C292385F17600277A49 /* DetailTableViewCell.swift in Sources */,
 				B1CF440C2383E0A100CFB940 /* Weather.swift in Sources */,
 				B16F1F6823861D5100C823D6 /* DetailViewModel.swift in Sources */,
+				B16F1F712387471D00C823D6 /* Store.swift in Sources */,
 				B1CF44122383F12700CFB940 /* WeatherViewController.swift in Sources */,
 				B1CF43E22383E00900CFB940 /* AppDelegate.swift in Sources */,
 				B1CF440F2383E0D000CFB940 /* Details.swift in Sources */,
@@ -336,6 +359,7 @@
 				B1768BF82384E0FC00277A49 /* URL+Extension.swift in Sources */,
 				B1CF44092383E07A00CFB940 /* WeatherTests.swift in Sources */,
 				B1CF44072383E05A00CFB940 /* MockDecodable.swift in Sources */,
+				B16F1F7323874AA500C823D6 /* StoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,13 +20,30 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var cityField: UITextField!
     @IBOutlet weak var weatherButton: UIButton!
     
+    var fetchWeatherHandler: WeatherResponse!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cityField.addTarget(self, action: #selector(didChangeText(sender:)), for: .editingChanged)
+        fetchWeatherHandler = { [weak self] (weatherResp, error) in
+            guard let strongSelf = self,
+                weatherResp != nil,
+                error == nil
+            else {
+                self?.weather = nil
+                self?.dataTask = nil
+                return
+            }
+            
+            strongSelf.weather = weatherResp
+            strongSelf.dataTask = nil
+            
+            DispatchQueue.main.async {
+                strongSelf.performSegue(withIdentifier: "PresentWeather", sender: strongSelf)
+            }
+        }
         
-        locationService.delegate = self
-        locationService.start()
+        cityField.addTarget(self, action: #selector(didChangeText(sender:)), for: .editingChanged)
     }
     
     @IBAction func didTapGetWeather(_ sender: Any) {
@@ -35,21 +52,7 @@ class SearchViewController: UIViewController {
             dataTask == nil
         else { return }
 
-        dataTask = client.weatherForCity(city) { [weak self] (weatherResp, error) in
-            guard let strongSelf = self,
-                weatherResp != nil,
-                error == nil
-            else {
-                self?.weather = nil
-                return
-            }
-            
-            strongSelf.weather = weatherResp
-            
-            DispatchQueue.main.async {
-                strongSelf.performSegue(withIdentifier: "PresentWeather", sender: strongSelf)
-            }
-        }
+        dataTask = client.weatherForCity(city, completion: fetchWeatherHandler)
     }
     
     @IBAction func didTapForCurrentLocationGetWeahter(_ sender: Any) {
@@ -73,6 +76,12 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: LocationServiceDelegate {
     func didGetCurrentLocation(_ location: CLLocation) {
+        guard dataTask == nil else { return }
         
+        dataTask = client.weatherForCoordinates(
+            latitude: location.coordinate.latitude,
+            longitude: location.coordinate.longitude,
+            completion: fetchWeatherHandler
+        )
     }
 }

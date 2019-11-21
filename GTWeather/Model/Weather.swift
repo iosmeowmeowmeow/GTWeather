@@ -8,16 +8,15 @@
 
 import Foundation
 
-struct Weather: Decodable, Equatable {
+struct Weather: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
-
+        case locationName = "name"
+        
         case details = "weather"
 
         case main
         case wind
-
-        case locationName = "name"
     }
 
     enum DetailsKey: String, CodingKey {
@@ -76,6 +75,31 @@ struct Weather: Decodable, Equatable {
         windDirection = try windContainer.decode(Double.self, forKey: .windDirection)
 
         _details = try container.decode([Details].self, forKey: .details)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(id, forKey: .id)
+        try container.encode(locationName, forKey: .locationName)
+        try container.encode(_details, forKey: .details)
+        
+        let mainDictionary: [String: Any] = [
+            "temp": temperatureAverage,
+            "temp_min": temperatureMin,
+            "temp_max": temperatureMax,
+            "pressure": pressure,
+            "humidity": humidity
+        ]
+        let mainJSON = try JSONSerialization.data(withJSONObject: mainDictionary)
+        try container.encode(mainJSON, forKey: .main)
+        
+        let windDictionary: [String: Any] = [
+            "speed": windSpeed,
+            "deg": windDirection
+        ]
+        let windJSON = try JSONSerialization.data(withJSONObject: windDictionary)
+        try container.encode(windJSON, forKey: .wind)
     }
 
     static func == (lhs: Weather, rhs: Weather) -> Bool {
