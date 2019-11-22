@@ -26,7 +26,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupFetchWeatherHandler()
+        locationService.delegate = self
+        
         getWeatherForLastSearch()
         
         cityField.addTarget(self, action: #selector(didChangeText(sender:)), for: .editingChanged)
@@ -38,6 +39,7 @@ class SearchViewController: UIViewController {
             dataTask == nil
         else { return }
 
+        setupFetchWeatherHandler(shouldSaveLocation: true)
         dataTask = client.weatherForCity(city, completion: fetchWeatherHandler)
     }
     
@@ -50,30 +52,26 @@ class SearchViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "PresentWeather",
+        if segue.identifier == "PresentWeather",
             let navDest = segue.destination as? UINavigationController,
             let dest = navDest.viewControllers.first as? WeatherViewController,
-            let weather = weather
-        else { return }
-        
-        dest.weather = weather
+            let weather = weather {
+            dest.weather = weather
+        } else if segue.identifier == "RecentSearches",
+            let dest = segue.destination as? RecentSearchViewController {
+            dest.store = store
+        }
     }
 }
 
 extension SearchViewController: LocationServiceDelegate {
     func didGetCurrentLocation(_ location: CLLocation) {
-        guard dataTask == nil else { return }
-        
-        dataTask = client.weatherForCoordinates(
-            latitude: location.coordinate.latitude,
-            longitude: location.coordinate.longitude,
-            completion: fetchWeatherHandler
-        )
+        getWeatherForCoordinates(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
     }
 }
 
 extension SearchViewController {
-    func setupFetchWeatherHandler() {
+    func setupFetchWeatherHandler(shouldSaveLocation: Bool) {
         fetchWeatherHandler = { [weak self] (weatherResp, error) in
             guard let strongSelf = self,
                 weatherResp != nil,
@@ -89,6 +87,10 @@ extension SearchViewController {
             
             if let weather = weatherResp {
                 strongSelf.store.save(weather: weather)
+                
+                if shouldSaveLocation {
+                    strongSelf.store.save(location: weather.locationName)
+                }
             }
             
             DispatchQueue.main.async {
@@ -99,13 +101,21 @@ extension SearchViewController {
 }
 
 extension SearchViewController {
+    fileprivate func getWeatherForCoordinates(lat: Double, lon: Double) {
+        guard dataTask == nil else { return }
+        
+        setupFetchWeatherHandler(shouldSaveLocation: false)
+        
+        dataTask = client.weatherForCoordinates(
+            latitude: lat,
+            longitude: lon,
+            completion: fetchWeatherHandler
+        )
+    }
+    
     func getWeatherForLastSearch() {
         guard let lastCoordinate = store.storedWeather() else { return }
         
-        dataTask = client.weatherForCoordinates(
-            latitude: lastCoordinate.location.lat,
-            longitude: lastCoordinate.location.lon,
-            completion: fetchWeatherHandler
-        )
+        getWeatherForCoordinates(lat: lastCoordinate.location.lat, lon: lastCoordinate.location.lon)
     }
 }

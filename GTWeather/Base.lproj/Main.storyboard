@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1pO-DJ-WfU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Kc-yN-4Vt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -69,6 +69,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kNN-4p-PwH"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dLd-rB-VLL">
+                        <barButtonItem key="rightBarButtonItem" title="Recent" id="KFD-EQ-IbN">
+                            <connections>
+                                <segue destination="DKp-tF-rpU" kind="show" identifier="RecentSearches" id="vNT-NT-Ynj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityField" destination="hER-Xa-f5q" id="7JZ-uh-9pN"/>
                         <outlet property="weatherButton" destination="VCV-Xu-ysj" id="x0V-js-X7T"/>
@@ -77,7 +84,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVd-Lp-1m8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="444" y="-305"/>
+            <point key="canvasLocation" x="1353.6231884057972" y="-305.35714285714283"/>
+        </scene>
+        <!--My Searches-->
+        <scene sceneID="wbY-zO-Jlr">
+            <objects>
+                <viewController id="DKp-tF-rpU" customClass="RecentSearchViewController" customModule="GTWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qL2-Jc-Evn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Df0-3s-XU4">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecentSearchCell" textLabel="INc-B3-EKI" style="IBUITableViewCellStyleDefault" id="b0q-77-whe" customClass="RecentSearchTableViewCell" customModule="GTWeather" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b0q-77-whe" id="mGK-nY-VTe">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="INc-B3-EKI">
+                                                    <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Df0-3s-XU4" firstAttribute="leading" secondItem="fX7-Zr-mwR" secondAttribute="leading" id="68J-Em-y2J"/>
+                            <constraint firstItem="fX7-Zr-mwR" firstAttribute="trailing" secondItem="Df0-3s-XU4" secondAttribute="trailing" id="DhJ-o5-RKi"/>
+                            <constraint firstItem="Df0-3s-XU4" firstAttribute="top" secondItem="fX7-Zr-mwR" secondAttribute="top" id="Jln-Ho-VU7"/>
+                            <constraint firstItem="fX7-Zr-mwR" firstAttribute="bottom" secondItem="Df0-3s-XU4" secondAttribute="bottom" id="VRG-JL-5Ka"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fX7-Zr-mwR"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Searches" id="nsx-ie-zXc">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="uJL-i1-tpC">
+                            <connections>
+                                <action selector="didTapClearButton:" destination="DKp-tF-rpU" id="PE9-R6-YQH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Df0-3s-XU4" id="YXD-HT-i3b"/>
+                        <segue destination="Ejs-XN-SHI" kind="presentation" identifier="PresentWeatherForRecentSearch" id="QYL-ig-k8a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JBw-1C-X1Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1354" y="429"/>
         </scene>
         <!--Weather View Controller-->
         <scene sceneID="MN4-sA-Z1J">
@@ -140,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWA-9r-XB2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2165" y="-305"/>
+            <point key="canvasLocation" x="3073.913043478261" y="-305.35714285714283"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="adJ-qK-Dhu">
@@ -158,7 +222,28 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Iv-jQ-Wkx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1317" y="-305"/>
+            <point key="canvasLocation" x="2226.0869565217395" y="-305.35714285714283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mbp-IX-FOf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Kc-yN-4Vt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fwY-pJ-dNq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1pO-DJ-WfU" kind="relationship" relationship="rootViewController" id="OQp-Us-hdJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khV-NS-5DG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="443.47826086956525" y="-305.35714285714283"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QYL-ig-k8a"/>
+    </inferredMetricsTieBreakers>
 </document>

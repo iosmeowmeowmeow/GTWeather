@@ -55,9 +55,7 @@ extension GTWeatherClient: WeatherClient {
                 completion(nil, error)
                 return
             }
-            
-            print(data)
-                
+  
             let decoder = JSONDecoder()
             do {
                 let weather = try decoder.decode(Weather.self, from: data)

@@ -1,5 +1,5 @@
 //
-//  DetailViewModel.swift
+//  RecentSearchViewModel.swift
 //  GTWeather
 //
 //  Created by Emmanuel Tugado on 22/11/19.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct DetailViewModel {
-    let title: String
-    let details: String
+struct RecentSearchViewModel {
+    let locationName: String
 }
