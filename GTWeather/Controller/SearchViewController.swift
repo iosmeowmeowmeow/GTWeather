@@ -26,27 +26,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchWeatherHandler = { [weak self] (weatherResp, error) in
-            guard let strongSelf = self,
-                weatherResp != nil,
-                error == nil
-            else {
-                self?.weather = nil
-                self?.dataTask = nil
-                return
-            }
-            
-            strongSelf.weather = weatherResp
-            strongSelf.dataTask = nil
-            
-            if let weather = weatherResp {
-                strongSelf.store.save(weather: weather)
-            }
-            
-            DispatchQueue.main.async {
-                strongSelf.performSegue(withIdentifier: "PresentWeather", sender: strongSelf)
-            }
-        }
+        setupFetchWeatherHandler()
+        getWeatherForLastSearch()
         
         cityField.addTarget(self, action: #selector(didChangeText(sender:)), for: .editingChanged)
     }
@@ -86,6 +67,44 @@ extension SearchViewController: LocationServiceDelegate {
         dataTask = client.weatherForCoordinates(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
+            completion: fetchWeatherHandler
+        )
+    }
+}
+
+extension SearchViewController {
+    func setupFetchWeatherHandler() {
+        fetchWeatherHandler = { [weak self] (weatherResp, error) in
+            guard let strongSelf = self,
+                weatherResp != nil,
+                error == nil
+            else {
+                self?.weather = nil
+                self?.dataTask = nil
+                return
+            }
+            
+            strongSelf.weather = weatherResp
+            strongSelf.dataTask = nil
+            
+            if let weather = weatherResp {
+                strongSelf.store.save(weather: weather)
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.performSegue(withIdentifier: "PresentWeather", sender: strongSelf)
+            }
+        }
+    }
+}
+
+extension SearchViewController {
+    func getWeatherForLastSearch() {
+        guard let lastCoordinate = store.storedWeather() else { return }
+        
+        dataTask = client.weatherForCoordinates(
+            latitude: lastCoordinate.location.lat,
+            longitude: lastCoordinate.location.lon,
             completion: fetchWeatherHandler
         )
     }
