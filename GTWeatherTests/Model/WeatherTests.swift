@@ -13,6 +13,7 @@ class WeatherTests: XCTestCase, MockDecodable {
     var sut: Weather!
     var dictionary: [String: Any]!
 
+    var locationDictionary: [String: Any]!
     var mainDictionary: [String: Any]!
     var windDictionary: [String: Any]!
 
@@ -20,6 +21,7 @@ class WeatherTests: XCTestCase, MockDecodable {
         super.setUp()
 
         try! createSUTAndDictionaryFromJSONWith(fileName: "data")
+        locationDictionary = dictionary["coord"] as? [String: Any] ?? [:]
         mainDictionary = dictionary["main"] as? [String: Any] ?? [:]
         windDictionary = dictionary["wind"] as? [String: Any] ?? [:]
     }
@@ -27,6 +29,7 @@ class WeatherTests: XCTestCase, MockDecodable {
     override func tearDown() {
         sut = nil
         dictionary = nil
+        locationDictionary = nil
         mainDictionary = nil
         windDictionary = nil
 
@@ -40,6 +43,16 @@ class WeatherTests: XCTestCase, MockDecodable {
     func test_decodable_sets_description() {
         guard let weather = dictionary["weather"] as? [[String: Any]] else { return }
         XCTAssertEqual(sut.description, weather[0]["description"] as? String)
+    }
+    
+    func test_decodable_sets_latitude() {
+        guard let coord = dictionary["coord"] as? [String: Any] else { return }
+        XCTAssertEqual(sut.location.lat, coord["lat"] as? Double)
+    }
+    
+    func test_decodable_sets_longitude() {
+        guard let coord = dictionary["coord"] as? [String: Any] else { return }
+        XCTAssertEqual(sut.location.lon, coord["lon"] as? Double)
     }
 
     func test_decodable_sets_pressure() {

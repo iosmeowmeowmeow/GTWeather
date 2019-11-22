@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     var dataTask: URLSessionDataTask?
     
     var locationService = LocationService()
+    var store = Store()
     
     var weather: Weather?
     
@@ -37,6 +38,10 @@ class SearchViewController: UIViewController {
             
             strongSelf.weather = weatherResp
             strongSelf.dataTask = nil
+            
+            if let weather = weatherResp {
+                strongSelf.store.save(weather: weather)
+            }
             
             DispatchQueue.main.async {
                 strongSelf.performSegue(withIdentifier: "PresentWeather", sender: strongSelf)

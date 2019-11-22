@@ -11,6 +11,7 @@ import Foundation
 struct Weather: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
+        case location = "coord"
         case locationName = "name"
         
         case details = "weather"
@@ -24,6 +25,7 @@ struct Weather: Codable, Equatable {
     }
     
     var id: Int
+    var location: Location
     var locationName: String
 
     private var _details: [Details]
@@ -39,6 +41,7 @@ struct Weather: Codable, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try container.decode(Int.self, forKey: .id)
+        location = try container.decode(Location.self, forKey: .location)
         locationName = try container.decode(String.self, forKey: .locationName)
         
         _details = try container.decode([Details].self, forKey: .details)
@@ -51,6 +54,7 @@ struct Weather: Codable, Equatable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(id, forKey: .id)
+        try container.encode(location, forKey: .location)
         try container.encode(locationName, forKey: .locationName)
         try container.encode(_details, forKey: .details)
         try container.encode(mainData, forKey: .main)
