@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>My Aussie Weather</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -20,6 +22,17 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Let us make it easier to get the weather, please?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Let us make it easier to get the weather, please?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Let us make it easier to get the weather, please?</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -60,16 +73,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Let us make it easier to get the weather, please?</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Let us make it easier to get the weather, please?</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Let us make it easier to get the weather, please?</string>
 </dict>
 </plist>
