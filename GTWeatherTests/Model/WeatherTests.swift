@@ -43,31 +43,31 @@ class WeatherTests: XCTestCase, MockDecodable {
     }
 
     func test_decodable_sets_pressure() {
-        XCTAssertEqual(sut.pressure, mainDictionary["pressure"] as? Double)
+        XCTAssertEqual(sut.mainData.pressure, mainDictionary["pressure"] as? Double)
     }
 
     func test_decodable_sets_humidity() {
-        XCTAssertEqual(sut.humidity, mainDictionary["humidity"] as? Double)
+        XCTAssertEqual(sut.mainData.humidity, mainDictionary["humidity"] as? Double)
     }
 
     func test_decodable_sets_temperatureAverage() {
-        XCTAssertEqual(sut.temperatureAverage, mainDictionary["temp"] as? Double)
+        XCTAssertEqual(sut.mainData.temperatureAverage, mainDictionary["temp"] as? Double)
     }
 
     func test_decodable_sets_temperatureMin() {
-        XCTAssertEqual(sut.temperatureMin, mainDictionary["temp_min"] as? Double)
+        XCTAssertEqual(sut.mainData.temperatureMin, mainDictionary["temp_min"] as? Double)
     }
 
     func test_decodable_sets_temperatureMax() {
-        XCTAssertEqual(sut.temperatureMax, mainDictionary["temp_max"] as? Double)
+        XCTAssertEqual(sut.mainData.temperatureMax, mainDictionary["temp_max"] as? Double)
     }
 
     func test_decodable_sets_windSpeed() {
-        XCTAssertEqual(sut.windSpeed, windDictionary["speed"] as? Double)
+        XCTAssertEqual(sut.wind.windSpeed, windDictionary["speed"] as? Double)
     }
 
     func test_decodable_sets_windDirection() {
-        XCTAssertEqual(sut.windDirection, windDictionary["deg"] as? Double)
+        XCTAssertEqual(sut.wind.windDirection, windDictionary["deg"] as? Double)
     }
 
     func test_decodable_setsLocationName() {

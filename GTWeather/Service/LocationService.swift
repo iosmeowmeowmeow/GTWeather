@@ -17,7 +17,7 @@ class LocationService: NSObject {
     private var locationManager: CLLocationManager!
     weak var delegate: LocationServiceDelegate?
     
-    init(locationManager: CLLocationManager = CLLocationManager()) {
+    init(locationManager: CLLocationManager = CLLocationManager(), dataStore: Store = Store()) {
         self.locationManager = locationManager
     }
     

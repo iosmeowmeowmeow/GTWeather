@@ -57,7 +57,7 @@ class GTWeatherClientTests: XCTestCase {
     }
     
     private func generateNetworkResponseWithStatusCode(_ statusCode: Int = 200, dataTask: MockURLSessionDataTask) throws {
-        let data = try Data.json(fileName: "data")
+        let data = try Data.dataFromJSON(fileName: "data")
         
         let response = HTTPURLResponse(
             url: URL(string: baseURLAddr)!,
