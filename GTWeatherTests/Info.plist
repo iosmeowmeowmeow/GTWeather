@@ -23,5 +23,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>Country</key>
+	<string>au</string>
 </dict>
 </plist>

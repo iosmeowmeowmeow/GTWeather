@@ -22,6 +22,12 @@ platform :ios do
       plist_path: "GTWeather/Info.plist",
       display_name: "My Aussie Weather"
     )
+
+    set_info_plist_value(
+      path: "GTWeather/Info.plist",
+      key: "Country",
+      value: "au"
+    )
   end
 
   desc "Canada Configuration"
@@ -29,6 +35,12 @@ platform :ios do
     update_info_plist(
       plist_path: "GTWeather/Info.plist",
       display_name: "My Eh Weather"
+    )
+
+    set_info_plist_value(
+      path: "GTWeather/Info.plist",
+      key: "Country",
+      value: "ca"
     )
   end
 end
