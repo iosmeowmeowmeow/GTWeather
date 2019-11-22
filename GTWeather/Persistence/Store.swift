@@ -11,6 +11,10 @@ import Foundation
 protocol Persistence {
     func save(weather: Weather)
     func storedWeather() -> Weather?
+    
+    func save(location: String)
+    func storedLocations() -> [String]
+    func clearStoredLocations()
 }
 
 class Store {
@@ -27,10 +31,23 @@ class Store {
     func storedWeather() -> Weather? {
         return persistence.storedWeather()
     }
+    
+    func save(location: String) {
+        persistence.save(location: location)
+    }
+    
+    func storedLocations() -> [String] {
+        return persistence.storedLocations()
+    }
+    
+    func clearStoredLocations() {
+        persistence.clearStoredLocations()
+    }
 }
 
 extension UserDefaults: Persistence {
     static var weatherKey: String { "Persistence.Weather" }
+    static var locationsKey: String { "Persistence.Locations" }
     
     func save(weather: Weather) {
         guard let encodedWeather = try? JSONEncoder().encode(weather) else { return }
@@ -42,5 +59,21 @@ extension UserDefaults: Persistence {
         guard let storedData = data(forKey: UserDefaults.weatherKey) else { return nil }
 
         return try? JSONDecoder().decode(Weather.self, from: storedData)
+    }
+    
+    func save(location: String) {
+        let locations = (array(forKey: UserDefaults.locationsKey) as? [String]) ?? []
+        var uniqueLocations = Array(Set(locations))
+        uniqueLocations.append(location)
+
+        set(uniqueLocations, forKey: UserDefaults.locationsKey)
+    }
+    
+    func storedLocations() -> [String] {
+        return (array(forKey: UserDefaults.locationsKey) as? [String]) ?? []
+    }
+    
+    func clearStoredLocations() {
+        set(nil, forKey: UserDefaults.locationsKey)
     }
 }

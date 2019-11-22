@@ -55,7 +55,7 @@ class StoreTests: XCTestCase {
         XCTAssertEqual(savedWeather, weather)
     }
     
-    func test_storedWeather_returnsNothingInitially() {
+    func test_storedWeather_returnsNilInitially() {
         XCTAssertNil(sut.storedWeather())
     }
     
@@ -74,5 +74,31 @@ class StoreTests: XCTestCase {
         XCTAssertNotNil(storedWeather)
         XCTAssertEqual(storedWeather, weather)
     }
+    
+    func test_saveLocation_storesLocation() {
+        sut.save(location: "Sydney")
+        sut.save(location: "Melbourne")
+        
+        let locations = mockDefaults.array(forKey: UserDefaults.locationsKey) as? [String]
+        
+        XCTAssertNotNil(locations)
+        XCTAssertEqual(["Sydney", "Melbourne"], locations)
+    }
+    
+    func test_storedLocations_returnsEmptyArrayInitially() {
+        XCTAssertTrue(sut.storedLocations().isEmpty)
+    }
+    
+    func test_storedLocations_returnsStoredLocations() {
+        mockDefaults.set(["Perth", "Adelaide"], forKey: UserDefaults.locationsKey)
+        XCTAssertEqual(["Perth", "Adelaide"], sut.storedLocations())
+    }
+    
+    func test_clearStoredLocations_removesStoredLocations() {
+        mockDefaults.set(["Perth", "Adelaide"], forKey: UserDefaults.locationsKey)
+        sut.clearStoredLocations()
+        
+        let locations = mockDefaults.array(forKey: UserDefaults.locationsKey) ?? []
+        XCTAssertTrue(locations.isEmpty)
+    }
 }
-
