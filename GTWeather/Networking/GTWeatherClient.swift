@@ -12,7 +12,7 @@ typealias WeatherResponse = (Weather?, Error?) -> ()
 
 protocol WeatherClient {
     func weatherForCity(_ city: String, completion: @escaping WeatherResponse) -> URLSessionDataTask?
-    func weatherForZIPCode(_ code: String, country: String, completion: @escaping WeatherResponse) -> URLSessionDataTask?
+    func weatherForZIPCode(_ code: String, completion: @escaping WeatherResponse) -> URLSessionDataTask?
     func weatherForCoordinates(latitude: Double, longitude: Double, completion: @escaping WeatherResponse) -> URLSessionDataTask?
 }
 
@@ -33,8 +33,10 @@ extension GTWeatherClient: WeatherClient {
         return startDataTaskForURL(url, completion: completion)
     }
     
-    func weatherForZIPCode(_ code: String, country: String = "au", completion: @escaping WeatherResponse) -> URLSessionDataTask? {
-        guard let url = requestURLWithParams(["zip": "\(code),\(country)"]) else { return nil }
+    func weatherForZIPCode(_ code: String, completion: @escaping WeatherResponse) -> URLSessionDataTask? {
+        guard let countryCode = Bundle.main.object(forInfoDictionaryKey: "Country") as? String else { return nil }
+
+        guard let url = requestURLWithParams(["zip": "\(code),\(countryCode)"]) else { return nil }
         
         return startDataTaskForURL(url, completion: completion)
     }

@@ -5,17 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.005156">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.006076">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: update_info_plist" time="0.028618">
+      <testcase classname="fastlane.lanes" name="1: update_info_plist" time="0.032317">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: set_info_plist_value" time="0.010859">
+      <testcase classname="fastlane.lanes" name="2: set_info_plist_value" time="0.003932">
         
       </testcase>
     
