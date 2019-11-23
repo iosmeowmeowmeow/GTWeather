@@ -40,10 +40,7 @@ class StoreTests: XCTestCase {
         guard let weather = weatherStub else { return }
         
         sut.save(weather: weather)
-        
-        let data = mockDefaults.data(forKey: UserDefaults.weatherKey)!
-        let dict = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
-        
+  
         guard let weatherData = mockDefaults.data(forKey: UserDefaults.weatherKey),
             let savedWeather = try? JSONDecoder().decode(Weather.self, from: weatherData)
         else {
