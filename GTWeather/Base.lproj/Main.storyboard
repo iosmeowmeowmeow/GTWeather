@@ -60,12 +60,18 @@
                                     <constraint firstItem="vEa-Z7-IyK" firstAttribute="leading" secondItem="VCV-Xu-ysj" secondAttribute="leading" id="tJ0-HW-La2"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="21s-rK-Mht">
+                                <rect key="frame" x="188.5" y="397.5" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="kNN-4p-PwH" firstAttribute="trailing" secondItem="0y0-Gd-IWv" secondAttribute="trailing" constant="50" id="0O8-bI-dHb"/>
+                            <constraint firstItem="VCV-Xu-ysj" firstAttribute="centerY" secondItem="21s-rK-Mht" secondAttribute="centerY" id="HCP-nU-kC5"/>
                             <constraint firstItem="0y0-Gd-IWv" firstAttribute="centerY" secondItem="amG-ha-UBl" secondAttribute="centerY" constant="-32" id="Run-1U-S6e"/>
                             <constraint firstItem="0y0-Gd-IWv" firstAttribute="leading" secondItem="kNN-4p-PwH" secondAttribute="leading" constant="50" id="SCD-bj-VXG"/>
+                            <constraint firstItem="VCV-Xu-ysj" firstAttribute="centerX" secondItem="21s-rK-Mht" secondAttribute="centerX" id="nzx-ed-mHu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kNN-4p-PwH"/>
                     </view>
@@ -77,7 +83,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="21s-rK-Mht" id="QHb-6A-A0b"/>
                         <outlet property="cityField" destination="hER-Xa-f5q" id="7JZ-uh-9pN"/>
+                        <outlet property="currentWeatherButton" destination="vEa-Z7-IyK" id="7rl-Mp-0Qc"/>
+                        <outlet property="recentBarButton" destination="KFD-EQ-IbN" id="WLZ-qt-q0l"/>
                         <outlet property="weatherButton" destination="VCV-Xu-ysj" id="x0V-js-X7T"/>
                         <segue destination="Ejs-XN-SHI" kind="presentation" identifier="PresentWeather" id="kMC-RJ-fT5"/>
                     </connections>
@@ -244,6 +253,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QYL-ig-k8a"/>
+        <segue reference="kMC-RJ-fT5"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,16 +11,43 @@ import UIKit
 
 class SearchViewController: UIViewController {
     var client = GTWeatherClient()
-    var dataTask: URLSessionDataTask?
-    
+
+    var dataTask: URLSessionDataTask? {
+        willSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else { return }
+
+                if newValue == nil {
+                    strongSelf.activityIndicator.stopAnimating()
+                    strongSelf.activityIndicator.isHidden = true
+
+                    strongSelf.weatherButton.isEnabled = true
+                    strongSelf.currentWeatherButton.isEnabled = true
+                    strongSelf.recentBarButton.isEnabled = true
+                } else {
+                    strongSelf.activityIndicator.startAnimating()
+                    strongSelf.activityIndicator.isHidden = false
+
+                    strongSelf.weatherButton.isEnabled = false
+                    strongSelf.currentWeatherButton.isEnabled = false
+                    strongSelf.recentBarButton.isEnabled = false
+                }
+            }
+        }
+    }
+
     var locationService = LocationService()
     var store = Store()
     
     var weather: Weather?
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     @IBOutlet weak var cityField: UITextField!
     @IBOutlet weak var weatherButton: UIButton!
-    
+    @IBOutlet weak var currentWeatherButton: UIButton!
+    @IBOutlet weak var recentBarButton: UIBarButtonItem!
+
     var fetchWeatherHandler: WeatherResponse!
     
     override func viewDidLoad() {

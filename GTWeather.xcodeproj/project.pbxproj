@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B144C9A12388AE460007CC99 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B16F1F6A23863B2A00C823D6 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		B16F1F702387471D00C823D6 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B16F1F7223874AA500C823D6 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		B1CF43D52383E00900CFB940 = {
 			isa = PBXGroup;
 			children = (
+				B144C9A12388AE460007CC99 /* README.md */,
 				B1CF43E02383E00900CFB940 /* GTWeather */,
 				B1CF43F72383E00A00CFB940 /* GTWeatherTests */,
 				B1CF43DF2383E00900CFB940 /* Products */,
