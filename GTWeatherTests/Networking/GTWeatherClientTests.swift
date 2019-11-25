@@ -41,7 +41,7 @@ class GTWeatherClientTests: XCTestCase {
 
     func test_weatherForCity_containsCity() {
         let mockTask = sut.weatherForCity("sydney") { _, _ in } as! MockURLSessionDataTask
-        XCTAssertEqual(mockTask.url["q"], "sydney")
+        XCTAssertEqual(mockTask.url["q"], "sydney,au")
     }
     
     func test_weatherForZIPCode_containsZIPCode() {

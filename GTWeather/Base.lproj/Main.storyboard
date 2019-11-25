@@ -2,12 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Kc-yN-4Vt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
+        <!--GET WEATHER-->
         <scene sceneID="fLH-O8-Oeb">
             <objects>
                 <viewController id="1pO-DJ-WfU" customClass="SearchViewController" customModule="GTWeather" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,21 +16,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0y0-Gd-IWv">
-                                <rect key="frame" x="50" y="311" width="314" height="210"/>
+                                <rect key="frame" x="50" y="183" width="314" height="290"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hER-Xa-f5q">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HYM-TB-Hxg">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="51"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <segments>
+                                            <segment title="Name"/>
+                                            <segment title="ZIP Code"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hER-Xa-f5q">
+                                        <rect key="frame" x="0.0" y="80" width="314" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCV-Xu-ysj">
-                                        <rect key="frame" x="0.0" y="80" width="314" height="50"/>
+                                        <rect key="frame" x="0.0" y="160" width="314" height="50"/>
                                         <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="iAa-D2-0yG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="GET WEATHER">
+                                        <state key="normal" title="FOR CITY">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -38,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEa-Z7-IyK">
-                                        <rect key="frame" x="0.0" y="160" width="314" height="50"/>
+                                        <rect key="frame" x="0.0" y="240" width="314" height="50"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="FOR CURRENT LOCATION">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -50,33 +61,36 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="VCV-Xu-ysj" firstAttribute="leading" secondItem="hER-Xa-f5q" secondAttribute="leading" id="EX4-G1-rev"/>
+                                    <constraint firstItem="HYM-TB-Hxg" firstAttribute="width" secondItem="hER-Xa-f5q" secondAttribute="width" id="FCh-2Q-xgC"/>
                                     <constraint firstAttribute="trailing" secondItem="hER-Xa-f5q" secondAttribute="trailing" id="IuV-xL-6t6"/>
                                     <constraint firstItem="VCV-Xu-ysj" firstAttribute="trailing" secondItem="hER-Xa-f5q" secondAttribute="trailing" id="Ppc-a3-Jex"/>
                                     <constraint firstItem="vEa-Z7-IyK" firstAttribute="height" secondItem="VCV-Xu-ysj" secondAttribute="height" id="csk-mW-Is2"/>
                                     <constraint firstItem="vEa-Z7-IyK" firstAttribute="trailing" secondItem="VCV-Xu-ysj" secondAttribute="trailing" id="iEC-ql-qQ5"/>
                                     <constraint firstItem="VCV-Xu-ysj" firstAttribute="height" secondItem="hER-Xa-f5q" secondAttribute="height" id="iY9-7s-Mi3"/>
+                                    <constraint firstItem="HYM-TB-Hxg" firstAttribute="height" secondItem="hER-Xa-f5q" secondAttribute="height" id="luE-DN-KdA"/>
                                     <constraint firstItem="hER-Xa-f5q" firstAttribute="leading" secondItem="0y0-Gd-IWv" secondAttribute="leading" id="rF5-rX-jev"/>
                                     <constraint firstItem="vEa-Z7-IyK" firstAttribute="width" secondItem="VCV-Xu-ysj" secondAttribute="width" id="tGf-UP-9b0"/>
                                     <constraint firstItem="vEa-Z7-IyK" firstAttribute="leading" secondItem="VCV-Xu-ysj" secondAttribute="leading" id="tJ0-HW-La2"/>
                                 </constraints>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="21s-rK-Mht">
-                                <rect key="frame" x="188.5" y="397.5" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="349.5" width="37" height="37"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kNN-4p-PwH" firstAttribute="trailing" secondItem="0y0-Gd-IWv" secondAttribute="trailing" constant="50" id="0O8-bI-dHb"/>
                             <constraint firstItem="VCV-Xu-ysj" firstAttribute="centerY" secondItem="21s-rK-Mht" secondAttribute="centerY" id="HCP-nU-kC5"/>
-                            <constraint firstItem="0y0-Gd-IWv" firstAttribute="centerY" secondItem="amG-ha-UBl" secondAttribute="centerY" constant="-32" id="Run-1U-S6e"/>
+                            <constraint firstItem="0y0-Gd-IWv" firstAttribute="centerY" secondItem="amG-ha-UBl" secondAttribute="centerY" constant="-120" id="Run-1U-S6e"/>
                             <constraint firstItem="0y0-Gd-IWv" firstAttribute="leading" secondItem="kNN-4p-PwH" secondAttribute="leading" constant="50" id="SCD-bj-VXG"/>
                             <constraint firstItem="VCV-Xu-ysj" firstAttribute="centerX" secondItem="21s-rK-Mht" secondAttribute="centerX" id="nzx-ed-mHu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kNN-4p-PwH"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dLd-rB-VLL">
+                    <navigationItem key="navigationItem" title="GET WEATHER" id="dLd-rB-VLL">
                         <barButtonItem key="rightBarButtonItem" title="Recent" id="KFD-EQ-IbN">
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="DKp-tF-rpU" kind="show" identifier="RecentSearches" id="vNT-NT-Ynj"/>
                             </connections>
@@ -86,6 +100,7 @@
                         <outlet property="activityIndicator" destination="21s-rK-Mht" id="QHb-6A-A0b"/>
                         <outlet property="cityField" destination="hER-Xa-f5q" id="7JZ-uh-9pN"/>
                         <outlet property="currentWeatherButton" destination="vEa-Z7-IyK" id="7rl-Mp-0Qc"/>
+                        <outlet property="methodSegControl" destination="HYM-TB-Hxg" id="YSq-X5-4Em"/>
                         <outlet property="recentBarButton" destination="KFD-EQ-IbN" id="WLZ-qt-q0l"/>
                         <outlet property="weatherButton" destination="VCV-Xu-ysj" id="x0V-js-X7T"/>
                         <segue destination="Ejs-XN-SHI" kind="presentation" identifier="PresentWeather" id="kMC-RJ-fT5"/>
@@ -105,7 +120,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Df0-3s-XU4">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecentSearchCell" textLabel="INc-B3-EKI" style="IBUITableViewCellStyleDefault" id="b0q-77-whe" customClass="RecentSearchTableViewCell" customModule="GTWeather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -118,16 +133,17 @@
                                                     <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Df0-3s-XU4" firstAttribute="leading" secondItem="fX7-Zr-mwR" secondAttribute="leading" id="68J-Em-y2J"/>
                             <constraint firstItem="fX7-Zr-mwR" firstAttribute="trailing" secondItem="Df0-3s-XU4" secondAttribute="trailing" id="DhJ-o5-RKi"/>
@@ -138,6 +154,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Searches" id="nsx-ie-zXc">
                         <barButtonItem key="rightBarButtonItem" title="Clear" id="uJL-i1-tpC">
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="didTapClearButton:" destination="DKp-tF-rpU" id="PE9-R6-YQH"/>
                             </connections>
@@ -162,7 +179,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eIY-8o-7G9">
                                 <rect key="frame" x="0.0" y="56" width="414" height="752"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailCell" textLabel="9tb-cf-gek" detailTextLabel="bZF-jJ-X0Q" style="IBUITableViewCellStyleValue1" id="8Zy-De-2tM" customClass="DetailTableViewCell" customModule="GTWeather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -182,16 +199,17 @@
                                                     <rect key="frame" x="350" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="o9G-eQ-wPQ" firstAttribute="bottom" secondItem="eIY-8o-7G9" secondAttribute="bottom" id="Rmn-xT-7da"/>
                             <constraint firstItem="eIY-8o-7G9" firstAttribute="leading" secondItem="o9G-eQ-wPQ" secondAttribute="leading" id="nLK-Ra-EI0"/>
@@ -202,6 +220,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="0Rd-hk-pEJ">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="LvT-lv-3o8">
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="didTapCloseButton:" destination="dCl-M1-cye" id="uTq-aF-LpM"/>
                             </connections>

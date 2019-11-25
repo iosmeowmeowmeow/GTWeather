@@ -19,6 +19,7 @@ class WeatherViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         
         viewModels = viewModelsForWeather(weather)
         

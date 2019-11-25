@@ -21,6 +21,7 @@ class RecentSearchViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         
         viewModels = store.storedLocations().reversed().compactMap { RecentSearchViewModel(locationName: $0) }
     }

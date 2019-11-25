@@ -28,7 +28,9 @@ class GTWeatherClient {
 
 extension GTWeatherClient: WeatherClient {
     func weatherForCity(_ city: String, completion: @escaping WeatherResponse) -> URLSessionDataTask? {
-        guard let url = requestURLWithParams(["q": city]) else { return nil }
+        guard let countryCode = Bundle.main.object(forInfoDictionaryKey: "Country") as? String else { return nil }
+
+        guard let url = requestURLWithParams(["q": "\(city),\(countryCode)"]) else { return nil }
         
         return startDataTaskForURL(url, completion: completion)
     }

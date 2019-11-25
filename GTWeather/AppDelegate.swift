@@ -44,7 +44,7 @@ enum BaseCountry: String, ColorConfigurator {
 
     var tintColor: UIColor {
         switch self {
-        case .australia: return .black
+        case .australia: return .white
         case .canada: return .red
         }
     }

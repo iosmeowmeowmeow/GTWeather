@@ -9,6 +9,10 @@
 import CoreLocation
 import UIKit
 
+enum SearchMethod: Int {
+    case name, zipCode
+}
+
 class SearchViewController: UIViewController {
     var client = GTWeatherClient()
 
@@ -47,6 +51,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var currentWeatherButton: UIButton!
     @IBOutlet weak var recentBarButton: UIBarButtonItem!
+    @IBOutlet weak var methodSegControl: UISegmentedControl!
 
     var fetchWeatherHandler: WeatherResponse!
     
@@ -56,18 +61,29 @@ class SearchViewController: UIViewController {
         locationService.delegate = self
         
         getWeatherForLastSearch()
-        
+
+        cityField.attributedPlaceholder = NSAttributedString(
+            string: "Search Here",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white
+        ])
         cityField.addTarget(self, action: #selector(didChangeText(sender:)), for: .editingChanged)
     }
     
     @IBAction func didTapGetWeather(_ sender: Any) {
-        guard let city = cityField.text,
-            !city.isEmpty,
-            dataTask == nil
+        guard let searchText = cityField.text,
+            !searchText.isEmpty,
+            dataTask == nil,
+            let searchMethod = SearchMethod(rawValue: methodSegControl.selectedSegmentIndex)
         else { return }
 
         setupFetchWeatherHandler(shouldSaveLocation: true)
-        dataTask = client.weatherForCity(city, completion: fetchWeatherHandler)
+
+        switch searchMethod {
+        case .name:
+            dataTask = client.weatherForCity(searchText, completion: fetchWeatherHandler)
+        case .zipCode:
+            dataTask = client.weatherForZIPCode(searchText, completion: fetchWeatherHandler)
+        }
     }
     
     @IBAction func didTapForCurrentLocationGetWeahter(_ sender: Any) {
