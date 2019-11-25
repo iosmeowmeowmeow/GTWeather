@@ -57,7 +57,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        activityIndicator.isHidden = true
         locationService.delegate = self
         
         getWeatherForLastSearch()
